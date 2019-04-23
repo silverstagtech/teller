@@ -1,0 +1,5 @@
+github.com/morfien101/influxLineProtocolOutput v0.0.0-20180103121825-607c6b3a96f5 h1:UgrdaNP5j9x1C0l6Xw7r57FVnzJ6sQXfOJFsEUNeQzQ=
+github.com/morfien101/influxLineProtocolOutput v0.0.0-20180103121825-607c6b3a96f5/go.mod h1:QZx98KCPqwfUmrpffeU/NJDZYfd6rgeI0hJo/Qm1Fkw=
+github.com/silverstagtech/gotracer v0.0.0-20190312101331-fb4b6a2cbdaa/go.mod h1:11IG1jPKZc+SNt7EIgdyorjFxuo8uf6thPeE7kPuMig=
+github.com/silverstagtech/loggos v0.3.0 h1:CMdzU+vXOYU9XLlG0OOlWWJwEn56/sngllfVgguRflw=
+github.com/silverstagtech/loggos v0.3.0/go.mod h1:d6SsjrAGdBs/7gB3BbrrfO1M25OU8O0thhL8hzYuq6g=

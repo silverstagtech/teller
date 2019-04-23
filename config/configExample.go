@@ -1,0 +1,189 @@
+package config
+
+var (
+	exampleconfig = `
+{
+  "story_name": "example",
+  "continuous": true,
+  "debug_logging": true,
+  "global_tags": {
+    "global_tag_one": "GValue1",
+    "global_tag_two": "GValue2"
+  },
+  "influx": [
+    {
+      "id": "influx1",
+      "host": "http://localhost:8086",
+      "username": "user",
+      "password": "password",
+      "database": "telegraf",
+      "precision": "ns",
+      "batch_size": 5000,
+      "http_timeout": 10,
+      "number_of_writers": 2,
+      "flush_interval": 2
+    },
+    {
+      "id": "influx2",
+      "host": "http://localhost:8086",
+      "username": "user",
+      "password": "password",
+      "database": "telegraf",
+      "precision": "ns",
+      "batch_size": 5000,
+      "http_timeout": 10,
+      "number_of_writers": 2,
+      "flush_interval": 2
+    }
+  ],
+  "statsd": [
+    {
+      "id": "statsd1",
+      "host": "localhost",
+      "port": 8125,
+      "transport": "udp",
+      "buffer_depth": 1000
+    },
+    {
+      "id": "statsd2",
+      "host": "localhost",
+      "port": 8125,
+      "transport": "tcp",
+      "buffer_depth": 1000
+    }
+  ],
+  "timelines": [
+    {
+      "timeline_name": "first_timeline",
+      "time_slices": [
+        {
+          "time_slice_name": "scene 1",
+          "repeat": 1,
+          "single_use": true,
+          "events": [
+            {
+              "metric_name": "influx_test1",
+              "type": "influx",
+              "connection_id": "influx1",
+              "tags": {
+                "tag1": "value1",
+                "tag2": "value2"
+              },
+              "fields": {
+                "counter": 1
+              },
+              "repeat": 20,
+              "time_between": {
+                "dynamic": {
+                  "minimum_time": 100,
+                  "vary": 50
+                }
+              }
+            },
+            {
+              "metric_name": "statsd_test1",
+              "type": "statsd",
+              "connection_id": "statsd1",
+              "tags": {
+                "tag1": "value1",
+                "tag2": "value2",
+                "metric_type": "counter"
+              },
+              "fields": {
+                "counter": 1
+              },
+              "repeat": 20,
+              "time_between": {
+                "static": {
+                  "time": 100
+                }
+              }
+            },
+            {
+              "metric_name": "sleep1",
+              "type": "sleeper",
+              "repeat": 1,
+              "time_between": {
+                "static": {
+                  "time": 10000
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "timeline_name": "timeline 2",
+      "time_slices": [
+        {
+          "time_slice_name": "scene 1",
+          "repeat": 2,
+          "events": [
+            {
+              "metric_name": "second_stream",
+              "type": "sleeper",
+              "repeat": 1,
+              "time_between": {
+                "static": {
+                  "time": 2000
+                }
+              }
+            }
+          ]
+        },
+        {
+          "time_slice_name": "scene 2",
+          "repeat": 4,
+          "events": [
+            {
+              "metric_name": "influx_test1",
+              "type": "influx",
+              "connection_id": "influx2",
+              "tags": {
+                "tag1": "value1",
+                "tag2": "value2"
+              },
+              "fields": {
+                "counter": 1
+              },
+              "repeat": 20,
+              "time_between": {
+                "dynamic": {
+                  "minimum_time": 100,
+                  "vary": 50
+                }
+              }
+            },
+            {
+              "metric_name": "statsd_test1",
+              "type": "statsd",
+              "connection_id": "statsd1",
+              "tags": {
+                "tag1": "value1",
+                "tag2": "value2",
+                "metric_type": "counter"
+              },
+              "fields": {
+                "counter": 1
+              },
+              "repeat": 20,
+              "time_between": {
+                "static": {
+                  "time": 100
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+`
+)
+
+// ExampleConfig return a example configuration with the useage of each element.
+func ExampleConfig() string {
+	return exampleconfig
+}
